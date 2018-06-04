@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE=1
+
+CMAKE_DIR   = cmake-3.0.2
+CMAKE_BUILD = $(CMAKE_DIR)/build
+CMAKE_BIN   = $(CMAKE_BUILD)/bin/cmake
+
+BUILD_DIR   = obj-$(DEB_HOST_GNU_TYPE)
+
+%:
+	dh $@
+
+$(CMAKE_BIN):
+	[ -f $(CMAKE_DIR) ] || tar xf $(CMAKE_DIR).tar.gz
+	mkdir -p $(CMAKE_BUILD)
+	cd $(CMAKE_BUILD) && cmake .. && make
+	
+override_dh_auto_configure: $(CMAKE_BIN)
+	echo $(DEB_HOST_GNU_TYPE)
+	mkdir -p $(BUILD_DIR)
+	cd $(BUILD_DIR) && \
+	../$(CMAKE_BIN) .. -DCMAKE_TOOLCHAIN_FILE=../mips-toolchain.cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON
+
+
+

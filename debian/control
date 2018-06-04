@@ -1,0 +1,15 @@
+Section: contrib/net
+Source: libmsgpackc2
+Priority: extra
+Maintainer: UBNT Package Maintainers <maintainers@ubnt.com>
+Build-Depends: debhelper (>= 5), python-dev (>= 2.7.3), python-pycparser
+Standards-Version: 3.7.2
+
+Package: libmsgpackc2
+Architecture: any
+Description: Binary serialization library
+  efficient binary serialization format, which lets you
+  exchange data among multiple languages like JSON, except
+  that it's faster and smaller. Small integers are encoded
+  into a single byte and short strings require only one extra
+  byte in addition to the strings themselves.

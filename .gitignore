@@ -49,3 +49,8 @@ Makefile
 /test/streaming_c
 /test/version
 /test/zone
+
+cmake-3.0.2
+debian/libmsgpackc*
+debian/files
+obj-*
